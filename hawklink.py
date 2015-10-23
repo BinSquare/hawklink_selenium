@@ -34,9 +34,9 @@ def hawklink():
 
     browser.find_element_by_xpath(elements['login']).click()
 
-    browser.find_element_by_id('Username').send_keys('bhe4')
+    browser.find_element_by_id('Username').send_keys('Username')
 
-    browser.find_element_by_id('Password').send_keys('951852ws')
+    browser.find_element_by_id('Password').send_keys('Password')
 
     browser.find_element_by_css_selector(elements['loginBtn']).click()
 
