@@ -1,7 +1,8 @@
 from selenium import webdriver
 from selenium.common.exceptions import TimeoutException, StaleElementReferenceException
-from selenium.webdriver.support.ui import WebDriverWait 
+from selenium.webdriver.support.ui import WebDriverWait
 import time
+from keys import keys
 
 
 """path_to_chromedriver = '/Users/Caius/Desktop/chromdriver/chromedriver'
@@ -34,9 +35,9 @@ def hawklink():
 
     browser.find_element_by_xpath(elements['login']).click()
 
-    browser.find_element_by_id('Username').send_keys('Username')
+    browser.find_element_by_id('Username').send_keys(keys['username'])
 
-    browser.find_element_by_id('Password').send_keys('Password')
+    browser.find_element_by_id('Password').send_keys(keys['password'])
 
     browser.find_element_by_css_selector(elements['loginBtn']).click()
 
@@ -45,7 +46,7 @@ def hawklink():
     browser.find_element_by_xpath(elements['request_listop']).click()
 
 
-def uniqify(seq):
+"""def uniqify(seq):
     keys_ini = {}
     for i in seq:
         keys[i] = 1
@@ -108,6 +109,7 @@ def crawler():
 
 to_be_scraped.append(sut)
 driver = webdriver.Firefox()
-hawklink()
 crawler()
-log.close
+log.close"""
+
+hawklink()

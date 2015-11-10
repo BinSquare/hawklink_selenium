@@ -18,7 +18,7 @@ $RECYCLE.BIN/
 *.lnk
 
 # Keys
-key.py
+keys.py
 
 # =========================
 # Operating System Files
