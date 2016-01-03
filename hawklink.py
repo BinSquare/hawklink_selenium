@@ -27,6 +27,7 @@ url = 'https://iit.collegiatelink.net/'
 
 
 # using Gspread to authenticate with google's stupid fucking Oauth2 api designed only for use by the select few who made it.
+# credits to Gspread code goes to the author of the Gspread documentation
 
 json_key = json.load(open('hawklink_service.json'))
 scope = ['https://spreadsheets.google.com/feeds']
@@ -95,7 +96,10 @@ def rows():
         cells = row.findChildren('td')
         for cell in cells:
             """print cell.string"""
-            cell_dict.append(cell.string)
+            try:
+                cell_dict.append(cell.string or cell.a.string)
+            except Exception, e:
+                cell_dict.append("none")
             worksheet.update_cell(str(cell_row), str(cell_col), cell_dict[i])
             i += 1
             """print i"""
@@ -130,12 +134,13 @@ def next_parse():
     rows()
     pass
 
+# main execution fuctions
 hawklink_nav()
 rows()
 second_page()
 time.sleep(3)
 rows()
-
+# repeats the same parsing for next_page() and row() for 10 times,
 for num in xrange(1, 11):
     next_parse()
     pass
