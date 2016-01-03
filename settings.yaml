@@ -1,0 +1,14 @@
+client_config_backend: settings
+client_config:
+  client_id: 441766186673-k3ukn8t61d6lnf4f2ml0o8atonbjfajp.apps.googleusercontent.com
+  client_secret: Lk13DbG_iCWs1hA0qmHt6aR-
+
+save_credentials: True
+save_credentials_backend: file
+save_credentials_file: credentials.json
+
+get_refresh_token: false
+
+oauth_scope:
+  - 'https://spreadsheets.google.com/feeds'
+  - 'https://www.googleapis.com/auth/drive'
