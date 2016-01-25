@@ -19,6 +19,8 @@ $RECYCLE.BIN/
 
 # Keys
 keys.py
+credentials.json
+client_secrets.json
 
 # =========================
 # Operating System Files
