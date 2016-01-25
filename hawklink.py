@@ -1,4 +1,7 @@
+#!/usr/bin/env python2.7
+
 from selenium import webdriver
+from selenium.webdriver.common import action_chains, keys
 from selenium.common.exceptions import TimeoutException, StaleElementReferenceException
 import time
 from keys import keys
@@ -11,12 +14,12 @@ from oauth2client.client import SignedJwtAssertionCredentials
 elements = {"login": '//*[@id="mainContent"]/a',
             "loginBtn": 'input[type=\"submit\"]',
             "administration": '//*[@id="navbar"]/ul/li[5]/a',
-            "request_list": '//*[@id="mainNav"]/nav/ul/li[3]/a',
+            "request_list": '//*[@id="mainNav"]/nav/ul/li[2]/a',
             "request_listop": '//*[@id="ddm-2"]/ul/li[1]/a',
             "all_requests": '//*[@id="page"]/section/ul/li[2]/a',
             "second_page": '//*[@id="RequestsGrid"]/div/div/span[2]/a[1]',
             "next_page": '//*[@id="RequestsGrid"]/div/div/span[2]/a[3]',
-            "page_content": '//*[@id="page"]/section'
+            "page_content": '//*[@id="RequestsGrid"]'
             }
 
 
@@ -59,16 +62,23 @@ def hawklink_nav():
 
     browser.find_element_by_xpath(elements['login']).click()
 
-    browser.find_element_by_id('Username').send_keys(keys['username'])
+    browser.find_element_by_id('username').send_keys(keys['username'])
 
-    browser.find_element_by_id('Password').send_keys(keys['password'])
+    browser.find_element_by_id('password').send_keys(keys['password'])
 
     browser.find_element_by_css_selector(elements['loginBtn']).click()
-
     browser.find_element_by_xpath(elements['administration']).click()
+    time.sleep(2)
+    browser.find_element_by_xpath('//*[@id="purchaserequests"]').click()
+    time.sleep(2)
+    browser.find_element_by_partial_link_text('All').click()
+    time.sleep(2)
+    browser.find_element_by_xpath(elements['all_requests']).click()
+"""    browser.find_element_by_xpath(elements['administration']).click()
+    time.sleep(2)
     browser.find_element_by_xpath(elements['request_list']).click()
     browser.find_element_by_xpath(elements['request_listop']).click()
-    browser.find_element_by_xpath(elements['all_requests']).click()
+    browser.find_element_by_xpath(elements['all_requests']).click()"""
 
 """
 def page_parse():
@@ -83,6 +93,7 @@ cell_row = 1
 
 def rows():
     """souped = BeautifulSoup(browser.page_source, "html5lib")"""
+    time.sleep(3)
     elem = browser.find_element_by_xpath(elements['page_content'])
     print elem.tag_name
     souped = BeautifulSoup(elem.get_attribute('innerHTML'), "html5lib")
@@ -141,7 +152,7 @@ second_page()
 time.sleep(3)
 rows()
 # repeats the same parsing for next_page() and row() for 10 times,
-for num in xrange(1, 11):
+for num in xrange(1, 21):
     next_parse()
     pass
 
